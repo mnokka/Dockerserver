@@ -1,10 +1,9 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
 
 ### What is this repository for? ###
 
-* Flask server, using application server uwsgi
+* Running Flask server +  using application server uwsgi inside docker image
 * Tested Virtual box + Ubuntu 16.4 LTS (Host Windows10)
 
 
