@@ -2,15 +2,23 @@ from flask import Flask
 import logging, sys
 import logging.config
 from logging import FileHandler
+from logging.handlers import RotatingFileHandler
 
 app=Flask(__name__)
 
 loglevel = logging.INFO #just a comment
-logfile="flask.log"
+logfile="/tmp/flask.log"
 
 def main(argv):
 	logging.basicConfig(filename=logfile,level=loglevel) 
 	print("Flask server logfile: {0}".format(logfile))
+	
+	
+	#handler = RotatingFileHandler("/tmp/foo.log", maxBytes=10000, backupCount=1)
+
+	#handler.setLevel(loglevel)
+	#app.logger.addHandler(handler)
+	
 	logging.info ("--Python starting Flask server--") 
 	app.run(debug=True, host='0.0.0.0')
 		
@@ -18,11 +26,13 @@ def main(argv):
 @app.route('/')
 def hello_world():
     logging.info ("--Just the page-") 
+    #app.logger.info("--Just the page-")
     return "HELLOS THERE\n"
 
 @app.route('/cat')
 def cat():
     logging.info ("--CAT SECTIONS--")
+    #app.logger.info("--CAT MIUS-")
     return "Cat says: MIU\n"
 
 		
