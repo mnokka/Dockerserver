@@ -5,4 +5,5 @@ WORKDIR /app
 COPY app /app
 RUN mkdir -p tmp
 
-CMD ["python","/app/server.py"]
+
+CMD ["uwsgi","--http","0.0.0.0:9090","--wsgi-file","/app/server.py","--callable","app","--stats","0.0.0.0:9191"]
