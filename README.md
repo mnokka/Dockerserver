@@ -5,6 +5,8 @@
 
 * Running Flask server +  using application server uwsgi inside docker image
 * Tested Virtual box + Ubuntu 16.4 LTS (Host Windows10)
+* Flask logging works under uWSGI
+* Pure flask server rans, but logging not working
 
 
 ### How do I get set up? ###
@@ -13,11 +15,12 @@
 * Do not use Ambientia VPN
 * Clone repo and execute in root
 * sudo docker build -t dockerserver . 
-* sudo docker run -p 9090:9090 -p 9191:9191 dockerserver
+* sudo docker run -it -v ~/tmp:/tmp -p 9090:9090 dockerserver
+* Log (in host): ~/tmp/flask.log, uWSGI logs to console starting Docker
 
 ### Test ###
 
 * Web browser: locahost:9090  or localhost:9090/cat
-* curl localhost:9090
+* curl localhost:9090 or curl localhost:9090/cat 
 
 
