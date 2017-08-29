@@ -3,6 +3,7 @@ import logging, sys
 import logging.config
 from logging import FileHandler
 from logging.handlers import RotatingFileHandler
+from logging import Formatter
 
 
 #logging works for uWSGI usage, not with pure flask server usage
@@ -24,8 +25,11 @@ def main(argv):
 	print("Flask server logfile: {0}".format(logfile))
 		
 	
+	
+	
 	handler = RotatingFileHandler(logfile, maxBytes=10000, backupCount=1)
 	handler.setLevel(loglevel)
+	handler.setFormatter(Formatter('%(asctime)s %(levelname)s: %(message)s '))
 	
 	app.logger.addHandler(handler)
 	
