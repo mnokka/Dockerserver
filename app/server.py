@@ -1,9 +1,14 @@
+# A: uthormika.nokka1@gmail.com  January 2018
+#
+
+
 from flask import Flask
 import logging, sys
 import logging.config
 from logging import FileHandler
 from logging.handlers import RotatingFileHandler
 from logging import Formatter
+import os
 
 
 #logging works for uWSGI usage, not with pure flask server usage
@@ -18,14 +23,17 @@ app=Flask(__name__)
 
 runtime="NA"
 loglevel = logging.DEBUG  #just a comment deubg loggin not shown in logs (uWSGI mode)
-logfile="/tmp/flask.log"
+#logfile="/tmp/flask.log"
 
 def main(argv):
 	#logging.basicConfig(filename=logfile,level=loglevel) 
-	print("Flask server logfile: {0}".format(logfile))
-		
 	
-	
+	shellvar1=os.environ['SHELLLOGFILE']
+	shellvar2=os.environ['CONTAINERDIR']
+	print ("===> Using shell variable SHELLLOGFILE:{0}".format(shellvar1))
+	print ("===> Using shell variable CONTAINERDIR:{0}".format(shellvar2))	
+	logfile=shellvar2+"/"+shellvar1
+	print("===> Host Flask server logfile: {0}".format(logfile))
 	
 	handler = RotatingFileHandler(logfile, maxBytes=10000, backupCount=1)
 	handler.setLevel(loglevel)
@@ -38,6 +46,7 @@ def main(argv):
 		app.run(debug=False, host='0.0.0.0')
 	if (runtime=="uWSGI"):
 		app.logger.warning ("-- uWSGI running Flask server--") #goes uWSGI console
+		
 
 @app.route('/')
 def hello_world():

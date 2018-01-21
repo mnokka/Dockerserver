@@ -1,17 +1,32 @@
-# mika.nokka1@gmail.com -  Docker Build and Run January 2018
+# Author: mika.nokka1@gmail.com  January 2018:
 #
+# just build all
+# usage: make -> build(everytime) and run 
+# usage: make logs --> start flask server log following (use in different shell)
+#
+# Flask server uses sentenvs defined variables in code (-e parameter transfers as env into contaner)
 
-# defines
-MOUNTDIR = ~/tmp:/tmp
-LOCAPORT = 9090
+# defines for the Host and Container (Flask server code)
+HOSTDIR=~/tmp
+CONTAINERDIR=/tmp
+MOUNTDIR = $(HOSTDIR):$(CONTAINERDIR)
 APPNAME = dockerserver
+SHELLLOGFILE= flask.log
+LOCAPORT=9090
+
+
 
 default: run 
 
 run: build
-	sudo docker run -it -v $(MOUNTDIR) -p $(LOCAPORT):$(LOCAPORT) $(APPNAME)
+	sudo docker run -e CONTAINERDIR=$(CONTAINERDIR) -e SHELLLOGFILE=$(SHELLLOGFILE) -it -v $(MOUNTDIR) -p $(LOCAPORT):$(LOCAPORT) $(APPNAME) 
 	
-build: Dockerfile
+build: Dockerfile 
 	sudo docker build -t $(APPNAME) . 
 
-.PHONY: run build
+
+logs: 
+	@echo "Starting logging of Flask server"
+	sudo tail -f $(HOSTDIR)/$(SHELLLOGFILE)
+
+.PHONY: run build logs setenvs
