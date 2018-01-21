@@ -51,8 +51,12 @@ def cat():
     print("Printing: CAT page section") # goes uWSGI console log
     return "Cat says: MIU\n"
 
-		
-		
+@app.route('/sulo')
+def sulo():
+    app.logger.warning("--CAT IS Sulo SECTION-") #error goes to uWSGI console log too
+    print("Printing: CAT is Sulo") # goes uWSGI console log
+    return "Cat is Sulo and says: MIU-MAU\n"		
+	
 if __name__ == "__main__":
 	runtime="SERVER"
    	main(sys.argv[1:])
