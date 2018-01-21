@@ -17,6 +17,7 @@
 * Clone repo and execute in root
 * sudo docker build -t dockerserver . 
 * sudo docker run -it -v ~/tmp:/tmp -p 9090:9090 dockerserver
+* Or just execute makefile: make (mountdir,localport and app name defined)
 * Log (in host): ~/tmp/flask.log, uWSGI logs to console starting Docker
 
 ### Test ###
