@@ -5,7 +5,7 @@
 
 * Running Flask server +  using application server uwsgi inside docker image
 * Tested Virtual box + Ubuntu 16.4 LTS (Host Windows10)
-* Tested Minut 17.2 (Ubuntu based)
+* Tested Minut 17.2
 * Flask logging works under uWSGI
 * Pure flask server rans, but logging not working
 
