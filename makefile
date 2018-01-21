@@ -13,3 +13,5 @@ run: build
 	
 build: Dockerfile
 	sudo docker build -t $(APPNAME) . 
+
+.PHONY: run build
