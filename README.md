@@ -20,14 +20,15 @@
 * sudo docker run -it -v ~/tmp:/tmp -p 9090:9090 dockerserver
 * Or just execute makefile to build and start server in container: make
 
-* Log (in host): ~/tmp/flask.log, uWSGI logs to console 
-* Or just tart following server logs: make logs
+* Log (in host): ~/tmp/flask.log, uWSGI logs to start console 
+* Or just start following server logs (from host): make logs
 
-* Flask server runtime variables defined in makefile (mount definitions, default localhost ports)
+* Flask server runtime variables are defined in makefile (mount definitions host-container, default port, application name)
 
 ### Test ###
 
 * Web browser: locahost:9090  or localhost:9090/cat or localhost:9090/sulo
 * curl localhost:9090 or curl localhost:9090/cat or curl localhost:9090/cat 
+* Web browser: localhost:9090/login?user=MYUSERNAME&pwd=MYPASSWORD  THIS IS JUST EXAMPLE TO PARSE PARAMETERS...
 
 
