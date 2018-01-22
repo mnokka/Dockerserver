@@ -13,13 +13,13 @@
 
 * Install Docker   https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
 * Do not use Ambientia VPN
-###MANUALLY
+*Manually*
 	* Clone repo and execute in root
 	* sudo docker build -t dockerserver . 
 	* sudo docker run -it -v ~/tmp:/tmp -p 9090:9090 dockerserver
-###VIA MAKE
+*Use make*
 	* Or just execute makefile to build and start server in container: make
-####LOGS
+*Logging*
 * uWSGI logs goes to start console 
 * Log (in host): ~/tmp/flask.log 
 * Or just start following server logs (from host): make logs
@@ -30,6 +30,6 @@
 
 * Web browser: locahost:9090  or localhost:9090/cat or localhost:9090/sulo
 * curl localhost:9090 or curl localhost:9090/cat or curl localhost:9090/cat 
-* Web browser: localhost:9090/login?user=MYUSERNAME&pwd=MYPASSWORD  THIS IS JUST EXAMPLE TO PARSE PARAMETERS...
+* Web browser: localhost:9090/login?user=MYUSERNAME&pwd=MYPASSWORD  
 
 
