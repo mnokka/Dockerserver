@@ -13,12 +13,15 @@
 
 * Install Docker   https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
 * Do not use Ambientia VPN
+
 *Manually*
 	* Clone repo and execute in root
 	* sudo docker build -t dockerserver . 
 	* sudo docker run -it -v ~/tmp:/tmp -p 9090:9090 dockerserver
+
 *Use make*
 	* Or just execute makefile to build and start server in container: make
+
 *Logging*
 * uWSGI logs goes to start console 
 * Log (in host): ~/tmp/flask.log 
