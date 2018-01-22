@@ -27,7 +27,7 @@
 
 ### Test ###
 
-* Web browser: locahost:9090  or localhost:9090/cat
-* curl localhost:9090 or curl localhost:9090/cat 
+* Web browser: locahost:9090  or localhost:9090/cat or localhost:9090/sulo
+* curl localhost:9090 or curl localhost:9090/cat or curl localhost:9090/cat 
 
 
