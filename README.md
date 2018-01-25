@@ -7,6 +7,7 @@
 * Tested 1) Window 10 Virtual box + Ubuntu 16.4 LTS   2) Standalone Mint 17.2
 * Flask logging works under uWSGI
 * Pure flask server rans, but logging not working (code detects "runtime env")
+* How to process Github event webhooks is explained in Configurations.rtf file
 
 
 ### How do I get set up? ###
@@ -36,6 +37,6 @@
 
 * Web browser: locahost:9090  or localhost:9090/cat or localhost:9090/sulo
 * curl localhost:9090 or curl localhost:9090/cat or curl localhost:9090/cat 
-* Web browser: localhost:9090/login?user=MYUSERNAME&pwd=MYPASSWORD  
+* Web browser: localhost:9090/login?user=MYUSERNAME or localhost:9090/command?param1=blaablaa&param2=foofoo
 
 
