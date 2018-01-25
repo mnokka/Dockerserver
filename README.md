@@ -34,8 +34,13 @@
 
 ### Test ###
 
-* Web browser: locahost:9090  or localhost:9090/cat or localhost:9090/sulo
-* curl localhost:9090 or curl localhost:9090/cat or curl localhost:9090/cat 
-* Web browser: localhost:9090/login?user=MYUSERNAME&pwd=MYPASSWORD  
+* Web browser: localhost:9090/cat or localhost:9090/sulo
+* curl  curl localhost:9090/cat or curl localhost:9090/cat 
+* Web browser: localhost:9090/login?user=MYUSERNAME
+* Web browser: localhost:9090/command?param=blaablaa&foofoo
+
+### Test ###
+
+How to process Github event webhooks is explained in Configurations.rtf file
 
 
