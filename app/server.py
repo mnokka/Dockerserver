@@ -1,5 +1,5 @@
 # Author mika.nokka1@gmail.com  January 2018
-#
+# https://github.com/mnokka/Dockerserver
 
 
 from flask import Flask
@@ -51,35 +51,97 @@ def main(argv):
 		app.logger.warning ("-- uWSGI running Flask server--") #goes uWSGI console
 		
 
-@app.route('/')
+@app.route('/test')
 def hello_world():
-    app.logger.warning ("--Just xxx the page-") #error goes to uWSGI console log too
-    print("Printing: xxxx page section") # goes uWSGI console log
-    return "HELLOS THERE\n"
+    app.logger.warning ("--Just the test page-") #error goes to uWSGI console log too
+    print("Printing: Test page section") # goes uWSGI console log
+    return "Returning test page creation message\n"
 
 @app.route('/cat')
 def cat():
-    app.logger.warning("--CAT MIUS SECTION-") #error goes to uWSGI console log too
-    print("==>Printing: CAT page section") # goes uWSGI console log
-    return "Cat says: MIU\n"
+    app.logger.warning("--Cat section-") #error goes to uWSGI console log too
+    print("==>Printing: Cat page section") # goes uWSGI console log
+    return "Returning Cat page message: MIU\n"
 
 @app.route('/sulo')
 def sulo():
-    app.logger.warning("--CAT IS Sulo SECTION-") #error goes to uWSGI console log too
-    print("==> Printing: CAT is Sulo") # goes uWSGI console log
-    return "Cat is Sulo and says: MIU-MAU\n"		
+    app.logger.warning("--Cat named Sulo section-") #error goes to uWSGI console log too
+    print("==> Printing: Cat named Sulo section") # goes uWSGI console log
+    return "Cat named Sulo message returning\n"		
     
-# This is an example. Please do not send passwords really like here
-# Calling localhost:9090/login?user=sulo&pwd=maumau
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    username = request.args.get('user')
-    password = request.args.get('pwd')
-    app.logger.warning("--Login initiated, user:{0} passwd:{1}".format(username,password)) #error goes to uWSGI console log too
-    print("==> Printing: Login initiated, user:{0} passwd:{1}".format(username,password)) # goes uWSGI console log
-    message=("<b>Login initiated for user:{0}  (password is:{1}</b>)".format(username,password))
-    return message
+# @app.route('/', methods=['GET', 'POST']) #THIS WOULD MATCH ALL WEBHOOKS
 
+    
+        
+    
+# command=login
+# parameter=user
+# calling: /login?user=MYUSERNAME 
+@app.route("/login", methods=["GET", "POST"])
+def webhooklogin():
+   
+    
+    if request.method == "GET":
+    	app.logger.warning('Login command GET section')
+    	print('Login command GET section')
+        return "Login command GET section reporting back: OK"
+    elif request.method == "POST": # FOR GITHUB EVENT WEBHOOK POST WITH DATA
+        data = request.get_json() #(force=True)
+        app.logger.warning( "--> Received data")
+       
+        user = request.args.get('user')
+        app.logger.warning("--Login command initiated, user:{0} ".format(user)) #error goes to uWSGI console log too
+    	print("==> Printing: Login command initiated, user:{0} ".format(user))  # goes uWSGI console log
+        
+        app.logger.warning('**********************************************')
+        app.logger.warning('GOT JSON LOGIN Headers: %s', request.headers) 
+        app.logger.warning('GOT JSON LOGIN Body: %s', request.get_data())
+        app.logger.warning('**********************************************')
+
+        print('**********************************************')
+        print('GOT JSON LOGIN Headers: %s', request.headers) 
+        print('GOT JSON LOGIN Body: %s', request.get_data())
+        print('**********************************************')
+          
+    return "LOGIN command returning message"	
+    
+      
+# command=command
+# parameter1=param1
+# parameter2=param2
+# calling: /command?param1=kissa&param2=koira
+@app.route("/command", methods=["GET", "POST"])
+def webhookcommand():
+   
+    
+    if request.method == "GET":
+    	app.logger.warning('Command GET section')
+    	print('Command GET section')
+        return "Command GET section reporting back: OK"
+    elif request.method == "POST": # FOR GITHUB EVENT WEBHOOK POST WITH DATA
+        data = request.get_json() #(force=True)
+        app.logger.warning( "--> Received data")
+       
+        param1 = request.args.get('param1')
+        param2 = request.args.get('param2')
+        
+        
+        app.logger.warning("-Command initiated, param1:{0} param2:{1}".format(param1,param2)) #error goes to uWSGI console log too
+    	print("==> Printing: Command initiated, param1:{0} param2:{1}".format(param1,param2)) # goes uWSGI console log
+        
+        app.logger.warning('**********************************************')
+        app.logger.warning('GOT JSON LOGIN Headers: %s', request.headers) 
+        app.logger.warning('GOT JSON LOGIN Body: %s', request.get_data())
+        app.logger.warning('**********************************************')
+
+        print('**********************************************')
+        print('GOT JSON LOGIN Headers: %s', request.headers) 
+        print('GOT JSON LOGIN Body: %s', request.get_data())
+        print('**********************************************')
+          
+    return "LOGIN command returning message"
+    
+    
 	
 if __name__ == "__main__":
 	runtime="SERVER"
