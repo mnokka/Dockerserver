@@ -13,7 +13,7 @@
 ### How do I get set up? ###
 
 * Install Docker   https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
-* Do not use Ambientia VPN
+
 
 *Manually*
 
